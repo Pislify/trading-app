@@ -38,7 +38,7 @@ using namespace std;
 
 int main()
 {
-   InitWindow(1860,1000,"pfiojasdkfj");
+   InitWindow(1280,720,"pfiojasdkfj");
    SetTargetFPS(20);
    vector<int> test_data={
       12,13,16,18,11,13,14,15,14,14,17,19,10,12,11,20
@@ -54,6 +54,8 @@ int main()
       BeginDrawing();
       ClearBackground(BLACK);
       m.DrawGraph();
+      m.Update();
+      
       EndDrawing();
 
    }

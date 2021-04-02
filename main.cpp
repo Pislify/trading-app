@@ -3,79 +3,45 @@
 #include <string>
 using namespace std;
 
-void DrawTrail(vector<int> vals,int space,int h,Color colorU,Color colorD,Color colorN)
+
+// vals : values
+// space : space btw lines
+// h : height line mltplier
+//color U : color wh line goes up
+//color d : color wh line goes down
+//color n : color wh line stays
+// y off : offset from up
+void DrawTrail(vector<int> vals,int space,int h,Color colorU,Color colorD,Color colorN,int y_off)
 {
    for(int i = 0 ; i < vals.size()-1;i++)
    {
+      Color drawColor;
       if (vals[i]>vals[i+1])
       {
-         DrawLine(i*space,720-(vals[i] * h) , (i+1)* space,720-(vals[i+1] * h) , colorD);
+         drawColor = colorD; //down color
       }
       if (vals[i]<vals[i+1])
       {
-         DrawLine(i*space,720-(vals[i] * h) , (i+1)* space,720-(vals[i+1] * h) , colorU);
+         drawColor = colorU; // up
       }
       if (vals[i]==vals[i+1])
       {
-         DrawLine(i*space,720-(vals[i] * h) , (i+1)* space,720-(vals[i+1] * h) , colorN);
+         drawColor = colorN; // neutral
       }
-      //DrawLine(i*space,720-(vals[i] * h) , (i+1)* space,720-(vals[i+1] * h) , color);
+      DrawLine(i*space,720+y_off-(vals[i] * h) , (i+1)* space,720+y_off-(vals[i+1] * h) , drawColor);
       string s = to_string(vals[i]);
-      DrawText(s.data(),i*space,720-(vals[i] * h) ,3,BLUE);
+      DrawText(s.data(),i*space,720+y_off-(vals[i]+1 * h) ,3,drawColor);
    }
 }
 
 int main()
 {
-   InitWindow(1000,1000,"Good");
+   InitWindow(1860,1000,"pfiojasdkfj");
    SetTargetFPS(20);
    vector<int> test_data={
-      343,
-      444,
-      524,
-      243,
-      533,
-      425,
-      536,
-      425,
-      464,
-      562,
-      456,
-      434,
-      756,
-      344,
-      241,
-      344,
-      231,
-      444,
-      444,
-      444,
-      544,
-      435,
-      434,
-      533,
-      512,
-      546,
-      453,
-      612,
-      456,
-      453,
-      742,
-      561,
-      452,
-      623,
-      523,
-      124,
-      234,
-      234,
-      234,
-      544,
-      345,
-      345,
-      334,
-      522
+      12,13,16,18,11,13,14,15,14,14,17,19,10,12,11,20
    };
-   
+
    int h = 1;
    int v = 1;
    while(!WindowShouldClose())
@@ -96,14 +62,14 @@ int main()
       {
          h--;
       }
-      
-     
+
+
       BeginDrawing();
       ClearBackground(BLACK);
-      DrawTrail(test_data,h,v,GREEN,RED,WHITE);
-      
+      DrawTrail(test_data,h,1,GREEN,RED,WHITE,v);
+
       EndDrawing();
-      
+
    }
    CloseWindow();
 }

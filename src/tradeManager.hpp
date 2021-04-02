@@ -7,11 +7,11 @@ using namespace std;
 struct TradeManager
 {
     vector<int> data;
-    int  widthIntencity;
-    int heightIntencity;
+    int  widthIntencity = 20;
+    int heightIntencity = 20;
 
-    int x_off;
-    int y_off;
+    int x_off = 0;
+    int y_off = 0;
 
     int fontS = 3;
 
@@ -27,7 +27,7 @@ struct TradeManager
     int zoomi = KEY_W;
     int zoomu = KEY_S;
     float cam_speed = 100;
-    float cam_zoom_speed = 40;
+    float cam_zoom_speed = 10;
     Camera2D cam =
     {
       (Vector2){0,0},
@@ -57,10 +57,12 @@ struct TradeManager
         if (IsKeyDown(zoomi))
         {
             cam.zoom -= cam_zoom_speed / GetFPS();
+            //widthIntencity -= cam_zoom_speed / GetFPS();
         }
-        if (IsKeyDown(zoomi))
+        if (IsKeyDown(zoomu))
         {
             cam.zoom += cam_zoom_speed / GetFPS();
+            //widthIntencity += cam_zoom_speed / GetFPS();
         }
     }
 
@@ -82,7 +84,6 @@ struct TradeManager
           {
              drawColor = colorN; // neutral
           }
-          //replace the 720's with get_windowH
           int x;
           int y;
           int x1;
@@ -101,7 +102,8 @@ struct TradeManager
           string s = to_string(data[i]);
           DrawText(s.data(),x,y ,fontS,nColor);
        }
-       DrawRectangle(-50,-50,100,100,RED);
+       //for debug
+       //DrawRectangle(-50,-50,100,100,RED);
        EndMode2D();
     }
 };

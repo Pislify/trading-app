@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <string>
-
+#include <iostream>
 #include <fstream>
 
 using namespace std;
@@ -13,8 +13,10 @@ struct Trade
 	string filename = "test.txt";
 	void Init()
 	{
-		file.open(filename.data());
-		file << "lol\n";
+		ofstream file;
+		file.open("test.txt");
+		file << "yay\n";
 		file.close();
+		system("cat test.txt");
 	}
 };

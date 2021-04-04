@@ -46,11 +46,13 @@ int main()
    TradeManager m;
    m.data = test_data;
 
+   Trade d;
    while(!WindowShouldClose())
    {
       BeginDrawing();
       ClearBackground(BLACK);
       DrawFPS(0,0);
+      d.Init();
       m.DrawGraph();
       m.Update();
 

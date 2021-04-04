@@ -1,7 +1,7 @@
 #include <raylib.h>
 #include <vector>
 #include <string>
-
+#include <trade.hpp>
 #include <tradeManager.hpp>
 using namespace std;
 
@@ -48,7 +48,6 @@ int main()
 
    while(!WindowShouldClose())
    {
-
       BeginDrawing();
       ClearBackground(BLACK);
       DrawFPS(0,0);

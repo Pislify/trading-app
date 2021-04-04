@@ -69,8 +69,12 @@ struct TradeManager
     void DrawGraph()
     {
        BeginMode2D(cam);
+       int smallval;
+       int bigval;
        for(int i = 0 ; i < data.size()-1;i++)
        {
+
+          
           Color drawColor;
           if (data[i]>data[i+1])
           {

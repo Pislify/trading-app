@@ -1,6 +1,8 @@
 #include <raylib.h>
 #include <vector>
 #include <string>
+#include <json/json.h>
+
 using namespace std;
 
 
@@ -35,6 +37,18 @@ struct TradeManager
       0,
       1
     };
+
+    int GetCoinPrice()
+    {
+        system("rm currentprice.json");
+        system("wget https://api.coindesk.com/v1/bpi/currentprice.json");
+        return 0;
+    }
+
+    void Init()
+    {
+        GetCoinPrice();
+    }
 
     void Update()
     {

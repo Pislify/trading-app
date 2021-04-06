@@ -1,7 +1,6 @@
 #include <raylib.h>
 #include <vector>
 #include <string>
-#include <trade.hpp>
 #include <tradeManager.hpp>
 using namespace std;
 
@@ -13,15 +12,14 @@ int main()
    {79,35,24,133,112,44,94,84,74,79};
 
    TradeManager m;
+   m.Init();
    m.data = test_data;
 
-   Trade d;
    while(!WindowShouldClose())
    {
       BeginDrawing();
       ClearBackground(BLACK);
       DrawFPS(0,0);
-      d.Init();
       m.DrawGraph();
       m.Update();
 

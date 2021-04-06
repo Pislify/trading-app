@@ -42,6 +42,8 @@ struct TradeManager
     {
         system("rm currentprice.json");
         system("wget https://api.coindesk.com/v1/bpi/currentprice.json");
+        int s = (system("python3 reader.py");
+
         return 0;
     }
 

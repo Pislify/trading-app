@@ -5,37 +5,6 @@
 #include <tradeManager.hpp>
 using namespace std;
 
-
-// vals : values
-// space : space btw lines
-// h : height line mltplier
-//color U : color wh line goes up
-//color d : color wh line goes down
-//color n : color wh line stays
-// y off : offset from up
-// void DrawTrail(vector<int> vals,int space,int h,Color colorU,Color colorD,Color colorN,int y_off)
-// {
-//    for(int i = 0 ; i < vals.size()-1;i++)
-//    {
-//       Color drawColor;
-//       if (vals[i]>vals[i+1])
-//       {
-//          drawColor = colorD; //down color
-//       }
-//       if (vals[i]<vals[i+1])
-//       {
-//          drawColor = colorU; // up
-//       }
-//       if (vals[i]==vals[i+1])
-//       {
-//          drawColor = colorN; // neutral
-//       }
-//       DrawLine(i*space,720+y_off-(vals[i] * h) , (i+1)* space,720+y_off-(vals[i+1] * h) , drawColor);
-//       string s = to_string(vals[i]);
-//       DrawText(s.data(),i*space,720+y_off-(vals[i]+1 * h) ,3,drawColor);
-//    }
-// }
-
 int main()
 {
    InitWindow(1280,720,"pfiojasdkfj");

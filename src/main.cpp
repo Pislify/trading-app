@@ -8,9 +8,7 @@ int main()
 {
    InitWindow(1280,720,"pfiojasdkfj");
    //SetTargetFPS(200);
-   vector<int> test_data =
-   {79,35,24,133,112,44,94,84,74,79};
-
+   vector <int> test_data = {0};
    TradeManager m;
    m.Init();
    m.data = test_data;

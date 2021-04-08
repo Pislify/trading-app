@@ -2,15 +2,20 @@
 #include <vector>
 #include <string>
 #include <json/json.h>
-
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <thread>
+#include <unistd.h>
+#include <time.h>
 using namespace std;
 
 
 struct TradeManager
 {
     vector<int> data;
-    int  widthIntencity = 20;
-    int heightIntencity = 20;
+    int  widthIntencity = 2;
+    int heightIntencity = 1;
 
     int x_off = 0;
     int y_off = 0;
@@ -42,14 +47,29 @@ struct TradeManager
     {
         system("rm currentprice.json");
         system("wget https://api.coindesk.com/v1/bpi/currentprice.json");
-        int s = (system("python3 reader.py");
-
-        return 0;
+        system("python3 reader.py");
+        int s = 69;
+        ifstream dataread("currentprice.json");
+        int input;
+        while (dataread  >> input)
+        {
+            s = input;
+            if (s!= 69)
+            {
+                return s;
+            }
+        }
+        
+        return s;
     }
 
     void Init()
     {
-        GetCoinPrice();
+    }
+
+    void AddCoin()
+    {
+        data.push_back(GetCoinPrice()/10);
     }
 
     void Update()
@@ -80,6 +100,8 @@ struct TradeManager
             cam.zoom += cam_zoom_speed / GetFPS();
             //widthIntencity += cam_zoom_speed / GetFPS();
         }
+        AddCoin();
+        
     }
 
     void DrawGraph()

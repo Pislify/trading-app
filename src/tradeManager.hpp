@@ -8,6 +8,7 @@
 #include <thread>
 #include <unistd.h>
 #include <time.h>
+#include "BitcoinGetter.hpp"
 using namespace std;
 
 
@@ -33,6 +34,7 @@ struct TradeManager
     int left = KEY_LEFT;
     int zoomi = KEY_W;
     int zoomu = KEY_S;
+    int timer = 0;
     float cam_speed = 100;
     float cam_zoom_speed = 10;
     Camera2D cam =
@@ -43,36 +45,12 @@ struct TradeManager
       1
     };
 
-    int GetCoinPrice()
-    {
-        system("rm currentprice.json");
-        system("wget https://api.coindesk.com/v1/bpi/currentprice.json");
-        system("python3 reader.py");
-        int s = 69;
-        ifstream dataread("currentprice.json");
-        int input;
-        while (dataread  >> input)
-        {
-            s = input;
-            if (s!= 69)
-            {
-                return s;
-            }
-        }
-        
-        return s;
-    }
 
     void Init()
     {
     }
 
-    void AddCoin()
-    {
-        data.push_back(GetCoinPrice()/10);
-    }
-
-    void Update()
+    void CamUpdate()
     {
         if (IsKeyDown(up))
         {
@@ -100,8 +78,23 @@ struct TradeManager
             cam.zoom += cam_zoom_speed / GetFPS();
             //widthIntencity += cam_zoom_speed / GetFPS();
         }
-        AddCoin();
-        
+    }
+    void Update()
+    {
+        timer++;
+        if(timer>=120)
+        {
+            thread d(AddCoin,&data);
+            CamUpdate();
+            DrawGraph();
+            d.join();
+            timer = 0;
+        }
+        else{
+            CamUpdate();
+            DrawGraph();
+        }
+                
     }
 
     void DrawGraph()
@@ -142,7 +135,9 @@ struct TradeManager
           DrawLine(x,y,x1,y1,drawColor);
 
           string s = to_string(data[i]);
-          DrawText(s.data(),x,y ,fontS,nColor);
+          if(i == data.size()-2){
+            DrawText(s.data(),x,y ,fontS,nColor);
+          }
        }
        //for debug
        //DrawRectangle(-50,-50,100,100,RED);

@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
    InitWindow(1280,720,"pfiojasdkfj");
-   //SetTargetFPS(200);
+   SetTargetFPS(60);
    vector <int> test_data = {0};
    TradeManager m;
    m.Init();
@@ -18,7 +18,7 @@ int main()
       BeginDrawing();
       ClearBackground(BLACK);
       DrawFPS(0,0);
-      m.DrawGraph();
+      
       m.Update();
 
       EndDrawing();

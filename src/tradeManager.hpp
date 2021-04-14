@@ -84,10 +84,11 @@ struct TradeManager
         timer++;
         if(timer>=120)
         {
+            DrawText("fetch" , 0,0,20 ,RED);
             thread d(AddCoin,&data);
+            d.join();
             CamUpdate();
             DrawGraph();
-            d.join();
             timer = 0;
         }
         else{

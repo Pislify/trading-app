@@ -21,7 +21,7 @@ struct TradeManager
     int x_off = 0;
     int y_off = 0;
 
-    int fontS = 3;
+    int fontS = 1;
 
     Color colorU = GREEN;
     Color colorD = RED;
@@ -35,8 +35,8 @@ struct TradeManager
     int zoomi = KEY_W;
     int zoomu = KEY_S;
     int timer = 0;
-    float cam_speed = 100;
-    float cam_zoom_speed = 10;
+    float cam_speed = 1000;
+    float cam_zoom_speed = 4;
     Camera2D cam =
     {
       (Vector2){0,0},
@@ -136,7 +136,7 @@ struct TradeManager
 
           string s = to_string(data[i]);
           if(i == data.size()-2){
-            DrawText(s.data(),x,y ,fontS,nColor);
+            DrawText(s.data(),x,y ,fontS * cam.zoom,nColor);
           }
        }
        //for debug

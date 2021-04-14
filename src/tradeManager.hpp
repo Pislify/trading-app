@@ -14,29 +14,45 @@ using namespace std;
 
 struct TradeManager
 {
+    //the integers that make the graph
     vector<int> data;
-    int  widthIntencity = 2;
+    
+    //multipliers for width and height
+    int  widthIntencity = 150;
     int heightIntencity = 1;
 
-    int x_off = 0;
-    int y_off = 0;
+    //offsets for the graph
+    int x_off = 0,y_off = 0;
 
+    //font sise for the 
     int fontS = 1;
 
+    //BASIC colors needs to be made into its class
     Color colorU = GREEN;
     Color colorD = RED;
     Color colorN = BLUE;
     Color nColor= WHITE;
 
+    //BASIC key controls needs to be made into its class adds up the the offset
     int up = KEY_UP;
     int down = KEY_DOWN;
     int right = KEY_RIGHT;
     int left = KEY_LEFT;
+
+    //BASIC key controls needs to be made into its class adds up the the mult
     int zoomi = KEY_W;
     int zoomu = KEY_S;
+
+    //timer to plan the fetch cycle time
     int timer = 0;
-    float cam_speed = 1000;
+
+    //cam speed
+    float cam_speed = 2000;
+    
+    //used to speed up  or slow down zoom speed
     float cam_zoom_speed = 4;
+
+    //default camera
     Camera2D cam =
     {
       (Vector2){0,0},
@@ -79,6 +95,10 @@ struct TradeManager
             //widthIntencity += cam_zoom_speed / GetFPS();
         }
     }
+    void Debug()
+    {
+        
+    }
     void Update()
     {
         timer++;
@@ -94,6 +114,7 @@ struct TradeManager
         else{
             CamUpdate();
             DrawGraph();
+            Debug();
         }
                 
     }
